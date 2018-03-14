@@ -1,26 +1,61 @@
 class SmartCalculator {
+
   constructor(initialValue) {
-    // your implementation
+    if (isFinite(initialValue)) {
+        this.output = ''+initialValue;
+        this.value = eval(this.output);
+      }
+  }
+
+  valueOf() {
+    return this.value;
   }
 
   add(number) {
-    // your implementation
+    if (isFinite(number)) {
+        this.output += ' + '+number;
+        this.value = eval(this.output);
+        return this;
+      }
   }
   
   subtract(number) {
-    // your implementation
+    if (isFinite(number)) {
+        this.output += ' - '+number;
+        this.value = eval(this.output);
+        return this;
+      }
   }
 
   multiply(number) {
-    // your implementation
+    if (isFinite(number)) {
+        this.output += ' * '+number;
+        this.value = eval(this.output);
+        return this;
+      }
   }
 
   devide(number) {
-    // your implementation
+    if (isFinite(number)) {
+        this.output += ' / '+number;
+        this.value = eval(this.output);
+        return this;
+      }
   }
 
   pow(number) {
-    // your implementation
+    if (isFinite(number)) {
+        let arr = this.output.split(' ');
+        let newString = '';
+        let i = arr.length - 1;
+        while (!isFinite(arr[i])) i--;
+    
+        if (isFinite(arr[i])) arr[i] = 'Math.pow('+arr[i]+', '+number+' )';
+        arr.forEach((x)=> newString+=x);
+        this.output = newString;
+        this.value = eval(this.output);
+        return this;
+      }
   }
 }
 
